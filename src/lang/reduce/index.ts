@@ -1,1 +1,1 @@
-export * from "./reduce.js"
+export * from "./reduce.ts"

@@ -1,5 +1,5 @@
-import { type Exp } from "../exp/index.js"
-import { type Substitution } from "../substitution/index.js"
+import { type Exp } from "../exp/index.ts"
+import { type Substitution } from "../substitution/index.ts"
 
 export function lookup(
   name: string,

@@ -1,8 +1,8 @@
-import { formatExp } from "../format/formatExp.js"
-import { modDefine, type Mod } from "../mod/index.js"
-import { reduce } from "../reduce/reduce.js"
-import { type Stmt } from "../stmt/Stmt.js"
-import { importOne } from "./importOne.js"
+import { formatExp } from "../format/formatExp.ts"
+import { modDefine, type Mod } from "../mod/index.ts"
+import { reduce } from "../reduce/reduce.ts"
+import { type Stmt } from "../stmt/Stmt.ts"
+import { importOne } from "./importOne.ts"
 
 export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {

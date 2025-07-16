@@ -1,5 +1,5 @@
-import { ParsingError, matchSymbol, type Sexp } from "../../sexp/index.js"
-import { numberSubscripts } from "../../utils/stringToSubscript.js"
+import { ParsingError, matchSymbol, type Sexp } from "../../sexp/index.ts"
+import { numberSubscripts } from "../../utils/stringToSubscript.ts"
 
 export function matchName(sexp: Sexp): string {
   const nameString = matchSymbol(sexp)

@@ -1,5 +1,5 @@
-import { type Exp } from "../exp/index.js"
-import { substitutionBindings, type Binding } from "../substitution/index.js"
+import { type Exp } from "../exp/index.ts"
+import { substitutionBindings, type Binding } from "../substitution/index.ts"
 
 export function formatExp(exp: Exp): string {
   switch (exp["@kind"]) {

@@ -1,5 +1,5 @@
-import type { Mod } from "../mod/index.js"
-import { execute } from "./execute.js"
+import type { Mod } from "../mod/index.ts"
+import { execute } from "./execute.ts"
 
 export function executeMod(mod: Mod): boolean {
   if (mod.isExecuted) {

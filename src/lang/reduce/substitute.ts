@@ -1,5 +1,5 @@
-import * as Exps from "../exp/index.js"
-import { type Exp } from "../exp/index.js"
+import * as Exps from "../exp/index.ts"
+import { type Exp } from "../exp/index.ts"
 import {
   substitutionExtend,
   substitutionIsEmpty,
@@ -7,9 +7,9 @@ import {
   substitutionMerge,
   substitutionTakeNames,
   type Substitution,
-} from "../substitution/index.js"
-import { globalFreshen } from "../utils/globalFreshen.js"
-import { lookup } from "./lookup.js"
+} from "../substitution/index.ts"
+import { globalFreshen } from "../utils/globalFreshen.ts"
+import { lookup } from "./lookup.ts"
 
 // NOTE `substitute` should not call `reduce.
 

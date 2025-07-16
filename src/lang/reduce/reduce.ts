@@ -1,8 +1,8 @@
-import * as Exps from "../exp/index.js"
-import { type Exp } from "../exp/index.js"
-import { modFind, type Mod } from "../mod/index.js"
-import { substitutionInitial } from "../substitution/index.js"
-import { substitute } from "./substitute.js"
+import * as Exps from "../exp/index.ts"
+import { type Exp } from "../exp/index.ts"
+import { modFind, type Mod } from "../mod/index.ts"
+import { substitutionInitial } from "../substitution/index.ts"
+import { substitute } from "./substitute.ts"
 
 // NOTE `reduce` might hit fixpoint on other kind of expressions,
 // but it will always remove `Let`.

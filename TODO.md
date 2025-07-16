@@ -1,3 +1,8 @@
+inline `run`
+rename `executeMod` to `run`
+[run] `define` vs. `execute`
+[run] move `importOne` to `define`
+
 replace sexp with x-data
 
 > 在 explicit-substitution 中实验，然后开始 cicada。

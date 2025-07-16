@@ -1,7 +1,7 @@
 {
-  "name": "@cicada-lang/explicit-substitution",
+  "name": "@cicada-lang/explicit-subst.js",
   "version": "0.3.0",
-  "repository": "github:cicada-lang/explicit-substitution",
+  "repository": "github:cicada-lang/explicit-subst.js",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./lib/index.js",
@@ -10,7 +10,7 @@
     "lib"
   ],
   "bin": {
-    "explicit-substitution": "lib/main.js"
+    "explicit-subst.js": "lib/main.js"
   },
   "scripts": {
     "build": "tsc",

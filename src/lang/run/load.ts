@@ -14,7 +14,7 @@ export async function load(
   }
 
   const text = await fs.promises.readFile(url.pathname, "utf8")
-  
+
   try {
     const mod = createMod({ url, loadedMods })
     mod.stmts = parseStmts(text)

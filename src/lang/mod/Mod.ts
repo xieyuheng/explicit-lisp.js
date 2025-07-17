@@ -6,5 +6,5 @@ export type Mod = {
   loadedMods: Map<string, { mod: Mod; text: string }>
   defs: Map<string, Def>
   stmts: Array<Stmt>
-  isExecuted?: boolean
+  isFinished?: boolean
 }

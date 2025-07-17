@@ -10,7 +10,7 @@ An interpreter of lambda calculus by [explicit substitution](https://en.wikipedi
 (import name ... "./file.scm")
 
 (lambda (name) ret)
-(let ([name exp] ...) body)
+(let ((name exp) ...) body)
 ```
 
 ## Usages

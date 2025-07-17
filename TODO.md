@@ -1,4 +1,3 @@
-use () instead of []
 use `kind` instead of "@kind"
 
 replace sexp with x-data

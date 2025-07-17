@@ -1,4 +1,3 @@
-rename `executeMod` to `run`
 [run] `define` vs. `execute`
 [run] move `importOne` to `define`
 

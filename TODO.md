@@ -1,5 +1,5 @@
-[run] `define` vs. `execute`
 [run] move `importOne` to `define`
+use `kind` instead of "@kind"
 
 replace sexp with x-data
 

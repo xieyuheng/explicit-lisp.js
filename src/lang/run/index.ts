@@ -1,2 +1,2 @@
-export * from "./executeMod.ts"
 export * from "./load.ts"
+export * from "./run.ts"

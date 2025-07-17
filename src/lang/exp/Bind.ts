@@ -1,4 +1,4 @@
-import type { Exp } from "../exp/index.ts"
+import { type Exp } from "./Exp.ts"
 
 export type Bind = {
   name: string
@@ -11,11 +11,11 @@ export function bindsIsEmpty(binds: Binds): boolean {
   return binds.size === 0
 }
 
-export function bindsFromBinds(binds: Array<Bind>): Binds {
+export function bindsFromArray(binds: Array<Bind>): Binds {
   return new Map([...binds.map<[string, Bind]>((bind) => [bind.name, bind])])
 }
 
-export function bindsBinds(binds: Binds): Array<Bind> {
+export function bindsToArray(binds: Binds): Array<Bind> {
   return Array.from(binds.values())
 }
 
@@ -23,7 +23,7 @@ export function bindsInitial(name: string, exp: Exp): Binds {
   return new Map([[name, { name, exp }]])
 }
 
-export function bindsExtend(binds: Binds, name: string, exp: Exp): Binds {
+export function bindsUpdate(binds: Binds, name: string, exp: Exp): Binds {
   return new Map([...binds, [name, { name, exp }]])
 }
 

@@ -1,10 +1,10 @@
 import * as Exps from "../exp/index.ts"
 import {
-  bindsExtend,
   bindsIsEmpty,
   bindsMapExp,
   bindsMerge,
   bindsTakeNames,
+  bindsUpdate,
   type Binds,
   type Exp,
 } from "../exp/index.ts"
@@ -42,7 +42,7 @@ export function substitute(binds: Binds, body: Exp): Exp {
       const freshName = globalFreshen(body.name)
       return Exps.Lambda(
         freshName,
-        Exps.Let(bindsExtend(binds, body.name, Exps.Var(freshName)), body.ret),
+        Exps.Let(bindsUpdate(binds, body.name, Exps.Var(freshName)), body.ret),
       )
     }
 

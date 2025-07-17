@@ -1,4 +1,4 @@
-import type { Mod } from "../mod/index.ts"
+import { type Mod } from "../mod/index.ts"
 import { define } from "./define.ts"
 import { execute } from "./execute.ts"
 

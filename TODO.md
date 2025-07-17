@@ -1,4 +1,4 @@
-[run] move `importOne` to `define`
+use () instead of []
 use `kind` instead of "@kind"
 
 replace sexp with x-data

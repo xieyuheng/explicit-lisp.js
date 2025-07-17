@@ -4,7 +4,7 @@ import { reduce } from "../reduce/reduce.ts"
 import { type Stmt } from "../stmt/Stmt.ts"
 
 export function execute(mod: Mod, stmt: Stmt): null {
-  switch (stmt["@kind"]) {
+  switch (stmt["kind"]) {
     case "Compute": {
       const reducedExp = reduce(mod, stmt.exp)
       console.log(formatExp(reducedExp))

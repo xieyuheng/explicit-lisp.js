@@ -8,7 +8,7 @@ import { substitute } from "./substitute.ts"
 // but it will always remove `Let`.
 
 export function reduce(mod: Mod, exp: Exp): Exp {
-  switch (exp["@kind"]) {
+  switch (exp["kind"]) {
     case "Var": {
       const defintion = modFind(mod, exp.name)
       if (defintion) {
@@ -35,7 +35,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
       const target = reduce(mod, exp.target)
       const arg = Exps.Lazy(exp.arg)
 
-      switch (target["@kind"]) {
+      switch (target["kind"]) {
         case "Fn": {
           const substitution = substitutionInitial(target.name, arg)
           return reduce(mod, substitute(substitution, target.ret))

@@ -1,5 +1,3 @@
-use `kind` instead of "@kind"
-
 replace sexp with x-data
 
 > 在 explicit-substitution 中实验，然后开始 cicada。

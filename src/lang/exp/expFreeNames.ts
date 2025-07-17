@@ -2,7 +2,7 @@ import { substitutionBindings } from "../substitution/index.ts"
 import { type Exp } from "./index.ts"
 
 export function expFreeNames(boundNames: Set<string>, exp: Exp): Set<string> {
-  switch (exp["@kind"]) {
+  switch (exp["kind"]) {
     case "Var": {
       return boundNames.has(exp.name) ? new Set() : new Set([exp.name])
     }

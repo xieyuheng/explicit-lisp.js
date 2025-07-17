@@ -4,21 +4,21 @@ export type Exp = Var | Lazy | Fn | Ap | Let
 
 export type Var = {
   "@type": "Exp"
-  "@kind": "Var"
+  kind: "Var"
   name: string
 }
 
 export function Var(name: string): Var {
   return {
     "@type": "Exp",
-    "@kind": "Var",
+    kind: "Var",
     name,
   }
 }
 
 export type Lazy = {
   "@type": "Exp"
-  "@kind": "Lazy"
+  kind: "Lazy"
   exp: Exp
   cache?: Exp
 }
@@ -26,7 +26,7 @@ export type Lazy = {
 export function Lazy(exp: Exp, cache?: Exp): Lazy {
   return {
     "@type": "Exp",
-    "@kind": "Lazy",
+    kind: "Lazy",
     exp,
     cache,
   }
@@ -34,7 +34,7 @@ export function Lazy(exp: Exp, cache?: Exp): Lazy {
 
 export type Fn = {
   "@type": "Exp"
-  "@kind": "Fn"
+  kind: "Fn"
   name: string
   ret: Exp
 }
@@ -42,7 +42,7 @@ export type Fn = {
 export function Fn(name: string, ret: Exp): Fn {
   return {
     "@type": "Exp",
-    "@kind": "Fn",
+    kind: "Fn",
     name,
     ret,
   }
@@ -50,7 +50,7 @@ export function Fn(name: string, ret: Exp): Fn {
 
 export type Ap = {
   "@type": "Exp"
-  "@kind": "Ap"
+  kind: "Ap"
   target: Exp
   arg: Exp
 }
@@ -58,7 +58,7 @@ export type Ap = {
 export function Ap(target: Exp, arg: Exp): Ap {
   return {
     "@type": "Exp",
-    "@kind": "Ap",
+    kind: "Ap",
     target,
     arg,
   }
@@ -66,7 +66,7 @@ export function Ap(target: Exp, arg: Exp): Ap {
 
 export type Let = {
   "@type": "Exp"
-  "@kind": "Let"
+  kind: "Let"
   substitution: Substitution
   body: Exp
 }
@@ -74,7 +74,7 @@ export type Let = {
 export function Let(substitution: Substitution, body: Exp): Let {
   return {
     "@type": "Exp",
-    "@kind": "Let",
+    kind: "Let",
     substitution,
     body,
   }

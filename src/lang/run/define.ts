@@ -4,7 +4,7 @@ import { type Stmt } from "../stmt/Stmt.ts"
 import { run } from "./run.ts"
 
 export function define(mod: Mod, stmt: Stmt): null {
-  switch (stmt["@kind"]) {
+  switch (stmt["kind"]) {
     case "Define": {
       modDefine(mod, stmt.name, {
         mod,

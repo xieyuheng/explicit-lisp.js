@@ -23,7 +23,7 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
     return body
   }
 
-  switch (body["@kind"]) {
+  switch (body["kind"]) {
     case "Var": {
       const found = lookup(body.name, substitution)
       if (found) {

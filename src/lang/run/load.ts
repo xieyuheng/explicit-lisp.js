@@ -1,8 +1,8 @@
 import fs from "node:fs"
 import { ParsingError } from "../../sexp/index.ts"
 import { createMod, modResolve, type Mod } from "../mod/index.ts"
+import { Parser } from "../parse/index.ts"
 import { type Stmt } from "../stmt/index.ts"
-import { Parser } from "../syntax/index.ts"
 
 export async function load(
   url: URL,

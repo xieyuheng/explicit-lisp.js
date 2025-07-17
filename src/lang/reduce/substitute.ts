@@ -1,3 +1,4 @@
+import { globalFreshen } from "../../utils/globalFreshen.ts"
 import * as Exps from "../exp/index.ts"
 import {
   bindsIsEmpty,
@@ -8,7 +9,6 @@ import {
   type Binds,
   type Exp,
 } from "../exp/index.ts"
-import { globalFreshen } from "../utils/globalFreshen.ts"
 import { lookup } from "./lookup.ts"
 
 // NOTE `substitute` should not call `reduce.

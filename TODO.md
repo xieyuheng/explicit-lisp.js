@@ -1,5 +1,3 @@
-move lang/utils/ to utils/
-
 # later
 
 support `(assert-equal)`

@@ -1,7 +1,4 @@
-import {
-  numberSubscripts,
-  stringToSubscript,
-} from "../../utils/stringToSubscript.ts"
+import { numberSubscripts, stringToSubscript } from "./stringToSubscript.ts"
 
 export let globalNameCounters: Map<string, number> = new Map()
 

@@ -1,5 +1,3 @@
-replace sexp with x-data
-
 # later
 
 support `(assert-equal)`

@@ -1,10 +1,10 @@
 import { type Subst } from "../subst/index.ts"
 
-export type Exp = Var | Lazy | Fn | Ap | Let
+export type Exp = Var | Lazy | Lambda | Apply | Let
 export type Var = { kind: "Var"; name: string }
 export type Lazy = { kind: "Lazy"; exp: Exp; cache?: Exp }
-export type Fn = { kind: "Fn"; name: string; ret: Exp }
-export type Ap = { kind: "Ap"; target: Exp; arg: Exp }
+export type Lambda = { kind: "Lambda"; name: string; ret: Exp }
+export type Apply = { kind: "Apply"; target: Exp; arg: Exp }
 export type Let = { kind: "Let"; subst: Subst; body: Exp }
 
 export function Var(name: string): Var {
@@ -22,17 +22,17 @@ export function Lazy(exp: Exp, cache?: Exp): Lazy {
   }
 }
 
-export function Fn(name: string, ret: Exp): Fn {
+export function Lambda(name: string, ret: Exp): Lambda {
   return {
-    kind: "Fn",
+    kind: "Lambda",
     name,
     ret,
   }
 }
 
-export function Ap(target: Exp, arg: Exp): Ap {
+export function Apply(target: Exp, arg: Exp): Apply {
   return {
-    kind: "Ap",
+    kind: "Apply",
     target,
     arg,
   }

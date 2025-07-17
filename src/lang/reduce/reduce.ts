@@ -27,22 +27,22 @@ export function reduce(mod: Mod, exp: Exp): Exp {
       }
     }
 
-    case "Fn": {
-      return Exps.Fn(exp.name, reduce(mod, exp.ret))
+    case "Lambda": {
+      return Exps.Lambda(exp.name, reduce(mod, exp.ret))
     }
 
-    case "Ap": {
+    case "Apply": {
       const target = reduce(mod, exp.target)
       const arg = Exps.Lazy(exp.arg)
 
       switch (target["kind"]) {
-        case "Fn": {
+        case "Lambda": {
           const subst = substInitial(target.name, arg)
           return reduce(mod, substitute(subst, target.ret))
         }
 
         default: {
-          return Exps.Ap(target, reduce(mod, arg))
+          return Exps.Apply(target, reduce(mod, arg))
         }
       }
     }

@@ -38,16 +38,16 @@ export function substitute(subst: Subst, body: Exp): Exp {
       }
     }
 
-    case "Fn": {
+    case "Lambda": {
       const freshName = globalFreshen(body.name)
-      return Exps.Fn(
+      return Exps.Lambda(
         freshName,
         Exps.Let(substExtend(subst, body.name, Exps.Var(freshName)), body.ret),
       )
     }
 
-    case "Ap": {
-      return Exps.Ap(Exps.Let(subst, body.target), Exps.Let(subst, body.arg))
+    case "Apply": {
+      return Exps.Apply(Exps.Let(subst, body.target), Exps.Let(subst, body.arg))
     }
 
     case "Let": {

@@ -1,5 +1,5 @@
 import { type Exp } from "../exp/index.ts"
-import { substBindings, type Binding } from "../subst/index.ts"
+import { substBinds, type Bind } from "../subst/index.ts"
 
 export function formatExp(exp: Exp): string {
   switch (exp["kind"]) {
@@ -15,45 +15,45 @@ export function formatExp(exp: Exp): string {
       }
     }
 
-    case "Fn": {
-      const { names, ret } = formatFn([exp.name], exp.ret)
+    case "Lambda": {
+      const { names, ret } = formatLambda([exp.name], exp.ret)
       return `(lambda (${names.join(" ")}) ${ret})`
     }
 
-    case "Ap": {
-      const { target, args } = formatAp(exp.target, [formatExp(exp.arg)])
+    case "Apply": {
+      const { target, args } = formatApply(exp.target, [formatExp(exp.arg)])
       return `(${target} ${args.join(" ")})`
     }
 
     case "Let": {
-      const bindings = substBindings(exp.subst).map(formatBinding)
-      return `(let (${bindings.join(" ")}) ${formatExp(exp.body)})`
+      const binds = substBinds(exp.subst).map(formatBind)
+      return `(let (${binds.join(" ")}) ${formatExp(exp.body)})`
     }
   }
 }
 
-function formatFn(
+function formatLambda(
   names: Array<string>,
   ret: Exp,
 ): { names: Array<string>; ret: string } {
-  if (ret["kind"] === "Fn") {
-    return formatFn([...names, ret.name], ret.ret)
+  if (ret["kind"] === "Lambda") {
+    return formatLambda([...names, ret.name], ret.ret)
   } else {
     return { names, ret: formatExp(ret) }
   }
 }
 
-function formatAp(
+function formatApply(
   target: Exp,
   args: Array<string>,
 ): { target: string; args: Array<string> } {
-  if (target["kind"] === "Ap") {
-    return formatAp(target.target, [formatExp(target.arg), ...args])
+  if (target["kind"] === "Apply") {
+    return formatApply(target.target, [formatExp(target.arg), ...args])
   } else {
     return { target: formatExp(target), args }
   }
 }
 
-function formatBinding(binding: Binding): string {
-  return `[${binding.name} ${formatExp(binding.exp)}]`
+function formatBind(bind: Bind): string {
+  return `[${bind.name} ${formatExp(bind.exp)}]`
 }

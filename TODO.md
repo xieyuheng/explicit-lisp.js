@@ -1,3 +1,5 @@
+inline `run` to `load`
+
 # later
 
 support `(assert-equal)`

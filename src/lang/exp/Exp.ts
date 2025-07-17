@@ -1,11 +1,11 @@
-import { type Subst } from "../subst/index.ts"
+import { type Binds } from "../exp/index.ts"
 
 export type Exp = Var | Lazy | Lambda | Apply | Let
 export type Var = { kind: "Var"; name: string }
 export type Lazy = { kind: "Lazy"; exp: Exp; cache?: Exp }
 export type Lambda = { kind: "Lambda"; name: string; ret: Exp }
 export type Apply = { kind: "Apply"; target: Exp; arg: Exp }
-export type Let = { kind: "Let"; subst: Subst; body: Exp }
+export type Let = { kind: "Let"; binds: Binds; body: Exp }
 
 export function Var(name: string): Var {
   return {
@@ -38,10 +38,10 @@ export function Apply(target: Exp, arg: Exp): Apply {
   }
 }
 
-export function Let(subst: Subst, body: Exp): Let {
+export function Let(binds: Binds, body: Exp): Let {
   return {
     kind: "Let",
-    subst,
+    binds,
     body,
   }
 }

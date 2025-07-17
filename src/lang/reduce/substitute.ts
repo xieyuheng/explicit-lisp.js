@@ -1,31 +1,28 @@
 import * as Exps from "../exp/index.ts"
 import { type Exp } from "../exp/index.ts"
 import {
-  substitutionExtend,
-  substitutionIsEmpty,
-  substitutionMapExp,
-  substitutionMerge,
-  substitutionTakeNames,
-  type Substitution,
-} from "../substitution/index.ts"
+  substExtend,
+  substIsEmpty,
+  substMapExp,
+  substMerge,
+  substTakeNames,
+  type Subst,
+} from "../subst/index.ts"
 import { globalFreshen } from "../utils/globalFreshen.ts"
 import { lookup } from "./lookup.ts"
 
 // NOTE `substitute` should not call `reduce.
 
-export function substitute(substitution: Substitution, body: Exp): Exp {
-  substitution = substitutionTakeNames(
-    substitution,
-    Exps.expFreeNames(new Set(), body),
-  )
+export function substitute(subst: Subst, body: Exp): Exp {
+  subst = substTakeNames(subst, Exps.expFreeNames(new Set(), body))
 
-  if (substitutionIsEmpty(substitution)) {
+  if (substIsEmpty(subst)) {
     return body
   }
 
   switch (body["kind"]) {
     case "Var": {
-      const found = lookup(body.name, substitution)
+      const found = lookup(body.name, subst)
       if (found) {
         return found
       } else {
@@ -35,9 +32,9 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
 
     case "Lazy": {
       if (body.cache) {
-        return substitute(substitution, body.cache)
+        return substitute(subst, body.cache)
       } else {
-        return Exps.Lazy(substitute(substitution, body.exp))
+        return Exps.Lazy(substitute(subst, body.exp))
       }
     }
 
@@ -45,35 +42,23 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
       const freshName = globalFreshen(body.name)
       return Exps.Fn(
         freshName,
-        Exps.Let(
-          substitutionExtend(substitution, body.name, Exps.Var(freshName)),
-          body.ret,
-        ),
+        Exps.Let(substExtend(subst, body.name, Exps.Var(freshName)), body.ret),
       )
     }
 
     case "Ap": {
-      return Exps.Ap(
-        Exps.Let(substitution, body.target),
-        Exps.Let(substitution, body.arg),
-      )
+      return Exps.Ap(Exps.Let(subst, body.target), Exps.Let(subst, body.arg))
     }
 
     case "Let": {
-      return substitute(
-        composeSubstitution(substitution, body.substitution),
-        body.body,
-      )
+      return substitute(composeSubst(subst, body.subst), body.body)
     }
   }
 }
 
-export function composeSubstitution(
-  left: Substitution,
-  right: Substitution,
-): Substitution {
-  return substitutionMerge(
+export function composeSubst(left: Subst, right: Subst): Subst {
+  return substMerge(
     left,
-    substitutionMapExp(right, (exp) => substitute(left, exp)),
+    substMapExp(right, (exp) => substitute(left, exp)),
   )
 }

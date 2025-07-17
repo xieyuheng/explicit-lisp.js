@@ -1,11 +1,8 @@
 import { type Exp } from "../exp/index.ts"
-import { type Substitution } from "../substitution/index.ts"
+import { type Subst } from "../subst/index.ts"
 
-export function lookup(
-  name: string,
-  substitution: Substitution,
-): Exp | undefined {
-  for (const binding of substitution.values()) {
+export function lookup(name: string, subst: Subst): Exp | undefined {
+  for (const binding of subst.values()) {
     if (binding.name === name) {
       return binding.exp
     }

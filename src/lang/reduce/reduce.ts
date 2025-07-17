@@ -1,7 +1,7 @@
 import * as Exps from "../exp/index.ts"
 import { type Exp } from "../exp/index.ts"
 import { modFind, type Mod } from "../mod/index.ts"
-import { substitutionInitial } from "../substitution/index.ts"
+import { substInitial } from "../subst/index.ts"
 import { substitute } from "./substitute.ts"
 
 // NOTE `reduce` might hit fixpoint on other kind of expressions,
@@ -37,8 +37,8 @@ export function reduce(mod: Mod, exp: Exp): Exp {
 
       switch (target["kind"]) {
         case "Fn": {
-          const substitution = substitutionInitial(target.name, arg)
-          return reduce(mod, substitute(substitution, target.ret))
+          const subst = substInitial(target.name, arg)
+          return reduce(mod, substitute(subst, target.ret))
         }
 
         default: {
@@ -48,7 +48,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
     }
 
     case "Let": {
-      return reduce(mod, substitute(exp.substitution, exp.body))
+      return reduce(mod, substitute(exp.subst, exp.body))
     }
   }
 }

@@ -1,4 +1,3 @@
-rename Substitution to Subst
 replace sexp with x-data
 
 # later

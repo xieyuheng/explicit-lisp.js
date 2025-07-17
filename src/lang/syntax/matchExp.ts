@@ -1,10 +1,7 @@
 import { cons, match, matchList, v, type Sexp } from "../../sexp/index.ts"
 import * as Exps from "../exp/index.ts"
 import { type Exp } from "../exp/index.ts"
-import {
-  substitutionFromBindings,
-  type Binding,
-} from "../substitution/index.ts"
+import { substFromBindings, type Binding } from "../subst/index.ts"
 import { matchName } from "./matchName.ts"
 
 export function matchExp(sexp: Sexp): Exp {
@@ -22,7 +19,7 @@ export function matchExp(sexp: Sexp): Exp {
       ["let", v("bindings"), v("body")],
       ({ bindings, body }) =>
         Exps.Let(
-          substitutionFromBindings(matchList(bindings, matchBinding)),
+          substFromBindings(matchList(bindings, matchBinding)),
           matchExp(body),
         ),
     ],

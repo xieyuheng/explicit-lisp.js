@@ -1,18 +1,10 @@
 import type { Mod } from "../mod/index.ts"
 import { execute } from "./execute.ts"
 
-export function executeMod(mod: Mod): boolean {
-  if (mod.isExecuted) {
-    return false
-  }
+export function run(mod: Mod): void {
+  if (mod.isExecuted) return
 
-  for (const stmt of mod.stmts) {
-    const output = execute(mod, stmt)
-    if (output) {
-      console.log(output)
-    }
-  }
+  for (const stmt of mod.stmts) execute(mod, stmt)
 
   mod.isExecuted = true
-  return true
 }

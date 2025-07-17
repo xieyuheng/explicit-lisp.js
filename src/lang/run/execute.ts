@@ -4,11 +4,12 @@ import { reduce } from "../reduce/reduce.ts"
 import { type Stmt } from "../stmt/Stmt.ts"
 import { importOne } from "./importOne.ts"
 
-export function execute(mod: Mod, stmt: Stmt): null | string {
+export function execute(mod: Mod, stmt: Stmt): null {
   switch (stmt["@kind"]) {
     case "Compute": {
       const reducedExp = reduce(mod, stmt.exp)
-      return formatExp(reducedExp)
+      console.log(formatExp(reducedExp))
+      return null
     }
 
     case "Define": {

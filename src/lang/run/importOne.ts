@@ -1,7 +1,7 @@
 import { modDefine, modFind, modResolve } from "../mod/index.ts"
 import type { Mod } from "../mod/Mod.ts"
 import type { ImportEntry } from "../stmt/Stmt.ts"
-import { executeMod } from "./run.ts"
+import { run } from "./run.ts"
 
 export function importOne(mod: Mod, path: string, entry: ImportEntry): void {
   const url = modResolve(mod, path)
@@ -14,7 +14,7 @@ export function importOne(mod: Mod, path: string, entry: ImportEntry): void {
     throw new Error(`Mod is not loaded: ${path}`)
   }
 
-  executeMod(found.mod)
+  run(found.mod)
 
   const { name, rename } = entry
 

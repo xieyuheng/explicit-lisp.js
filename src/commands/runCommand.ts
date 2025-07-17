@@ -1,7 +1,7 @@
 import { type Command } from "@xieyuheng/commander.js"
 import fs from "fs"
 import Path from "path"
-import { executeMod, load } from "../lang/run/index.ts"
+import { load, run } from "../lang/run/index.ts"
 
 export const runCommand: Command = {
   name: "run",
@@ -20,7 +20,7 @@ export const runCommand: Command = {
 
     try {
       const mod = await load(url, new Map())
-      executeMod(mod)
+      run(mod)
 
       // const loadedMods = new Map()
       // const mod = await load(url, loadedMods)

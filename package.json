@@ -1,7 +1,7 @@
 {
-  "name": "@xieyuheng/explicit-subst.js",
+  "name": "@xieyuheng/explicit-lisp.js",
   "version": "0.3.1",
-  "repository": "github:xieyuheng/explicit-subst.js",
+  "repository": "github:xieyuheng/explicit-lisp.js",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./lib/index.js",
@@ -10,7 +10,7 @@
     "lib"
   ],
   "bin": {
-    "explicit-subst.js": "lib/main.js"
+    "explicit-lisp.js": "lib/main.js"
   },
   "scripts": {
     "build": "tsc",

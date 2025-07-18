@@ -20,7 +20,7 @@ An interpreter of lambda calculus by [explicit substitution](https://en.wikipedi
 Install it by the following command:
 
 ```sh
-npm install -g @cicada-lang/explicit-subst.js
+npm install -g @xieyuheng/explicit-subst.js
 ```
 
 The command-line program is called `explicit-subst.js`.

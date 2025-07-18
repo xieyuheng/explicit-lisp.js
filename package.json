@@ -1,7 +1,7 @@
 {
-  "name": "@cicada-lang/explicit-subst.js",
+  "name": "@xieyuheng/explicit-subst.js",
   "version": "0.3.1",
-  "repository": "github:cicada-lang/explicit-subst.js",
+  "repository": "github:xieyuheng/explicit-subst.js",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./lib/index.js",

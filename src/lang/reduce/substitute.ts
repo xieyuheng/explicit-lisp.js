@@ -1,4 +1,4 @@
-import { globalFreshen } from "../../utils/globalFreshen.ts"
+import { globalFreshen } from "../../utils/name/globalFreshen.ts"
 import * as Exps from "../exp/index.ts"
 import {
   bindsIsEmpty,

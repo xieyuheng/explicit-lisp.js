@@ -3,28 +3,22 @@ import type { ImportEntry } from "../stmt/Stmt.ts"
 import { type Stmt } from "../stmt/Stmt.ts"
 import { run } from "./run.ts"
 
-export function define(mod: Mod, stmt: Stmt): null {
-  switch (stmt["kind"]) {
-    case "Define": {
-      modDefine(mod, stmt.name, {
-        mod,
-        name: stmt.name,
-        exp: stmt.exp,
-      })
-      return null
+export function define(mod: Mod, stmt: Stmt): void {
+  if (stmt.kind === "Define") {
+    modDefine(mod, stmt.name, {
+      mod,
+      name: stmt.name,
+      exp: stmt.exp,
+    })
+    return
+  }
+
+  if (stmt.kind === "Import") {
+    for (const entry of stmt.entries) {
+      importOne(mod, stmt.path, entry)
     }
 
-    case "Import": {
-      for (const entry of stmt.entries) {
-        importOne(mod, stmt.path, entry)
-      }
-
-      return null
-    }
-
-    default: {
-      return null
-    }
+    return
   }
 }
 

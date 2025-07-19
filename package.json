@@ -29,7 +29,7 @@
     "regexp-match-indices": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "^24.0.14",
+    "@types/node": "^24.0.15",
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",

@@ -1,6 +1,6 @@
 # Explicit Substitution
 
-An interpreter of lambda calculus by [explicit substitution](https://en.wikipedia.org/wiki/Explicit_substitution).
+An implementation of lambda calculus by [explicit substitution](https://en.wikipedia.org/wiki/Explicit_substitution).
 
 - The meaning of scheme's `(let)` can be viewed as explicit substitution.
 

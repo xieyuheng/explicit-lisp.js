@@ -1,0 +1,8 @@
+(iter-Nat (lambda (base₁ step₁) (step₁ (step₁ base₁))) (lambda (base₃ step₅) (step₅ (step₅ (step₅ (step₅ (step₅ base₃)))))) (lambda (prev base step) (step (prev base step))))
+(lambda (base₈ step₁₅) (step₁₅ (step₁₅ (step₁₅ (step₁₅ (step₁₅ (step₁₅ (step₁₅ base₈))))))))
+(iter-Nat (lambda (base₁₅ step₂₉) (step₂₉ (step₂₉ (step₂₉ base₁₅)))) (lambda (base₁₈ step₃₅) (step₃₅ (step₃₅ (step₃₅ base₁₈)))) (lambda (prev base step) (step (prev base step))))
+(lambda (base₂₁ step₄₁) (step₄₁ (step₄₁ (step₄₁ (step₄₁ (step₄₁ (step₄₁ base₂₁)))))))
+(lambda (base₃₀ step₅₈) (iter-Nat (lambda (base₂₈ step₅₄) (step₅₄ (step₅₄ base₂₈))) (iter-Nat (lambda (base₃₁ step₅₉) (step₅₉ (step₅₉ (step₅₉ (step₅₉ (step₅₉ base₃₁)))))) base₃₀ step₅₈) step₅₈))
+(lambda (base₃₆ step₆₉) (step₆₉ (step₆₉ (step₆₉ (step₆₉ (step₆₉ (step₆₉ (step₆₉ base₃₆))))))))
+(lambda (base₄₇ step₉₀) (iter-Nat (lambda (base₄₄ step₈₄) (step₈₄ (step₈₄ (step₈₄ base₄₄)))) (iter-Nat (lambda (base₄₈ step₉₁) (step₉₁ (step₉₁ (step₉₁ base₄₈)))) base₄₇ step₉₀) step₉₀))
+(lambda (base₅₁ step₉₇) (step₉₇ (step₉₇ (step₉₇ (step₉₇ (step₉₇ (step₉₇ base₅₁)))))))

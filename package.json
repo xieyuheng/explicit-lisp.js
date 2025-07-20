@@ -1,6 +1,6 @@
 {
   "name": "@xieyuheng/explicit-lisp.js",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "repository": "github:xieyuheng/explicit-lisp.js",
   "license": "GPL-3.0-or-later",
   "type": "module",

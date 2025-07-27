@@ -1,7 +1,3 @@
-# module
-
-refactor `load` to support circular imports
-
 # later
 
 support `(assert-equal)`

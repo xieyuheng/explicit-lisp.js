@@ -1,8 +1,14 @@
 import { ParsingError } from "@xieyuheng/x-data.js"
+import assert from "node:assert"
 import fs from "node:fs"
-import { createMod, modResolve, type Mod } from "../mod/index.ts"
+import { expFreeNames } from "../exp/expFreeNames.ts"
+import { formatExp } from "../format/formatExp.ts"
+import { createMod, modFind, modOwnDefs, type Mod } from "../mod/index.ts"
 import { parseStmts } from "../parse/index.ts"
 import { globalLoadedMods } from "./globalLoadedMods.ts"
+import { handleDefine } from "./handleDefine.ts"
+import { handleEffect } from "./handleEffect.ts"
+import { handleImport } from "./handleImport.ts"
 
 export async function load(url: URL): Promise<Mod> {
   const found = globalLoadedMods.get(url.href)
@@ -14,14 +20,7 @@ export async function load(url: URL): Promise<Mod> {
     const mod = createMod(url)
     mod.stmts = parseStmts(text)
     globalLoadedMods.set(url.href, { mod, text })
-
-    for (const stmt of mod.stmts) {
-      if (stmt["kind"] === "Import") {
-        const importedUrl = modResolve(mod, stmt.path)
-        await load(importedUrl,)
-      }
-    }
-
+    await run(mod)
     return mod
   } catch (error) {
     if (error instanceof ParsingError) {
@@ -29,5 +28,37 @@ export async function load(url: URL): Promise<Mod> {
     }
 
     throw error
+  }
+}
+
+async function run(mod: Mod): Promise<void> {
+  if (mod.isFinished) return
+
+  for (const stmt of mod.stmts) await handleDefine(mod, stmt)
+  for (const stmt of mod.stmts) await handleImport(mod, stmt)
+
+  postprocess(mod)
+
+  for (const stmt of mod.stmts) await handleEffect(mod, stmt)
+
+  mod.isFinished = true
+}
+
+function postprocess(mod: Mod): void {
+  for (const def of modOwnDefs(mod).values()) {
+    def.freeNames = expFreeNames(new Set(), def.exp)
+  }
+
+  for (const def of modOwnDefs(mod).values()) {
+    assert(def.freeNames)
+    for (const name of def.freeNames) {
+      if (!modFind(mod, name)) {
+        throw new Error(
+          `[load] I find undefined name: ${name}\n` +
+            `  defining: ${def.name}\n` +
+            `  to: : ${formatExp(def.exp)}\n`,
+        )
+      }
+    }
   }
 }

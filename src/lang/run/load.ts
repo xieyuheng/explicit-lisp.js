@@ -29,7 +29,7 @@ export async function load(
     return mod
   } catch (error) {
     if (error instanceof ParsingError) {
-      throw new Error(error.report(text))
+      throw new Error(error.report({ text }))
     }
 
     throw error

@@ -9,21 +9,14 @@ export type Def = {
 
 export type Mod = {
   url: URL
-  loadedMods: Map<string, { mod: Mod; text: string }>
   defs: Map<string, Def>
   stmts: Array<Stmt>
   isFinished?: boolean
 }
 
-export function createMod(options: {
-  url: URL
-  loadedMods: Map<string, { mod: Mod; text: string }>
-}): Mod {
-  const { url, loadedMods } = options
-
+export function createMod(url: URL): Mod {
   return {
     url,
-    loadedMods,
     defs: new Map(),
     stmts: [],
   }

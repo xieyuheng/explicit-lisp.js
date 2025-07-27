@@ -1,6 +1,7 @@
 import { modDefine, modFind, modResolve, type Mod } from "../mod/index.ts"
 import type { ImportEntry } from "../stmt/Stmt.ts"
 import { type Stmt } from "../stmt/Stmt.ts"
+import { globalLoadedMods } from "./globalLoadedMods.ts"
 import { run } from "./run.ts"
 
 export function define(mod: Mod, stmt: Stmt): void {
@@ -28,7 +29,7 @@ function importOne(mod: Mod, path: string, entry: ImportEntry): void {
     throw new Error(`I can not circular import: ${path}`)
   }
 
-  const found = mod.loadedMods.get(url.href)
+  const found = globalLoadedMods.get(url.href)
   if (found === undefined) {
     throw new Error(`Mod is not loaded: ${path}`)
   }

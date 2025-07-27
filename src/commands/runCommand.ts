@@ -19,12 +19,8 @@ export const runCommand: Command = {
     const url = createURL(String(commander.args[0]))
 
     try {
-      const mod = await load(url, new Map())
+      const mod = await load(url)
       run(mod)
-
-      // const loadedMods = new Map()
-      // const mod = await load(url, loadedMods)
-      // run(mod)
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message)

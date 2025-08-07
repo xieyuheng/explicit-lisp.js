@@ -1,5 +1,5 @@
-(import zero add1 add add-rosser "nat-church.lisp")
-(import one two three four five six seven eight nine ten "nat-church.lisp")
+(import "nat-church.lisp" zero add1 add add-rosser)
+(import "nat-church.lisp" one two three four five six seven eight nine ten)
 
 (add two five) seven
 (add three three) six
